@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+// Variables
+:root {
+    // Fonts
+    --text-font: "Lexend Deca", "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    --title-font: "Big SHoulders Display", "League Gothic", Arial, Helvetica, sans-serif;
+
+    // Colours
+    --sedans-primary: hsl(31, 77%, 52%);
+    --suvs-primary: hsl(184, 100%, 22%);
+    --luxury-primary: hsl(179, 100%, 13%);
+    --text-neutral: hsla(0, 0%, 100%, 0.75);
+    --body-neutral: hsl(0, 0%, 95%);
+    --title-neutral: hsl(0, 0%, 95%);
+    --button-neutral: hsl(0, 0%, 95%);
+
+    // Font sizes
+    --title-text: 4rem;
+    --content-text: 1.5rem;
+
+    // Background positions for sprite
+    --sedans-background-position: 0 0;
+    --suvs-background-position: 0 -40px;
+    --luxury-background-position: 0 -80px;
+
+    // Borders and padding
+    --button-block-padding: 1.6rem;
+    --button-inline-padding: 3.2rem;
+    --button-border-width: 0.2rem;
+
+    // Rounded corners
+    --cards-rounded-corner: 0.8rem;
+    --button-rounded-corner: 2.4rem;
+}

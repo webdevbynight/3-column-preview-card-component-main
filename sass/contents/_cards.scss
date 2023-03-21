@@ -1,0 +1,98 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+@use "../config" as *;
+
+/** @section Cards */
+
+$models: (sedans suvs luxury);
+.cards {
+    @include css-media-queries ($from-breakpoint: three-column-cards) {
+        display: flex;
+        max-width: 91.8rem;
+    }
+}
+.card {
+    color: var(--text-neutral);
+    background: black; // Default background for colour-contrast purposes (when no `$model` class is applied)
+    padding: 4.8rem;
+    &:first-child {
+        border-top-left-radius: var(--cards-rounded-corner);
+        border-top-right-radius: var(--cards-rounded-corner);
+        @include css-media-queries ($from-breakpoint: three-column-cards) {
+            border-top-right-radius: initial;
+            border-bottom-left-radius: var(--cards-rounded-corner);
+        }
+    }
+    &:last-child {
+        border-bottom-left-radius: var(--cards-rounded-corner);
+        border-bottom-right-radius: var(--cards-rounded-corner);
+        @include css-media-queries ($from-breakpoint: three-column-cards) {
+            border-top-right-radius: var(--cards-rounded-corner);
+            border-bottom-left-radius: initial;
+        }
+    }
+    &::before {
+        background: url("images/sprite.svg") no-repeat;
+        display: block;
+        width: 6.4rem;
+        height: 4rem;
+        margin-bottom: 3.2rem;
+        content: "";
+    }
+    p {
+        margin: 2.8rem 0;
+        @include css-media-queries ($from-breakpoint: three-column-cards) {
+            margin-bottom: 8.4rem;
+        }
+    }
+    .title {
+        font-size: var(--title-text);
+        font-family: var(--title-font);
+        color: var(--title-neutral);
+        text-transform: uppercase;
+    }
+    .more {
+        color: var(--button-neutral); // [1] When a `$model` class is applied and the link is active, this colour will be used for inhreitance at [2]
+        margin: 0;
+        a {
+            color: black; // Default colour for colour-contrast purposes (when no `$model` class is applied)
+            background: var(--button-neutral);
+            text-decoration: none;
+            display: inline-block;
+            padding: var(--button-block-padding) var(--button-inline-padding);
+            border-radius: var(--button-rounded-corner);
+            transition: color 125ms ease-in, background 50ms ease-out;
+            &:hover,
+            &:focus {
+                color: var(--button-neutral);
+                background: transparent;
+                padding: calc(var(--button-block-padding) - var(--button-border-width)) calc(var(--button-inline-padding) - var(--button-border-width));
+                border: var(--button-border-width) solid;
+            }
+        }
+        @include css-media-queries ($from-breakpoint: three-column-cards) {
+            margin-top: auto;
+        }
+    }
+    @each $model in $models {
+        &.#{$model} {
+            background: var(--#{$model}-primary);
+            &::before {
+                background-position: var(--#{$model}-background-position);
+            }
+            .more {
+                a {
+                    color: var(--#{$model}-primary);
+                    &:hover,
+                    &:focus {
+                        color: inherit; // [2] See [1]
+                    }
+                }
+            }
+        }
+    }
+    @include css-media-queries ($from-breakpoint: three-column-cards) {
+        display: flex;
+        flex-direction: column;
+    }
+}
